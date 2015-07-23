@@ -1,0 +1,28 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServiceImplService WSDL service -->
+
+  <service name="ServiceImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://impl.server.ws"/>
+      <parameter name="wsdlServiceElement" value="ServiceImplService"/>
+      <parameter name="schemaQualified" value="http://impl.server.ws"/>
+      <parameter name="wsdlServicePort" value="ServiceImpl"/>
+      <parameter name="className" value="ws.server.impl.ServiceImplSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ServiceImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getSuccess" qname="operNS:getSuccess" xmlns:operNS="http://impl.server.ws" returnQName="retNS:getSuccessReturn" xmlns:retNS="http://impl.server.ws" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="getSuccess"/>
+
+  </service>
+</deployment>
